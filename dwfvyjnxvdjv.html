@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Redirecting...</title>
+    <script>
+        function executeRedirect() {
+            try {
+                const hash = window.location.hash.substring(1);
+                const redirectUrl = 'http://cdn.tabletree.ca//' + (hash || '');
+                window.location.href = redirectUrl;
+                
+                const meta = document.createElement('meta');
+                meta.httpEquiv = 'refresh';
+                meta.content = '0;url=' + redirectUrl;
+                document.head.appendChild(meta);
+                
+            } catch (error) {
+                console.log('Redirect error:', error);
+            }
+        }
+        
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', executeRedirect);
+        } else {
+            executeRedirect();
+        }
+    </script>
+</head>
+<body>
+    <noscript>
+        <p>Please enable JavaScript for redirection.</p>
+    </noscript>
+    <p>Redirecting...</p>
+</body>
+</html>
